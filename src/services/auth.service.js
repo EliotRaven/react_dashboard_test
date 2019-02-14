@@ -1,4 +1,5 @@
 import API from '../helpers/api'
+import {history} from "../helpers";
 
 export const authService = {
     signin,
@@ -43,4 +44,5 @@ function setUserToStorage(user) {
 
 function logout() {
     sessionStorage.removeItem('auth-user')
+    history.push('/')
 }
