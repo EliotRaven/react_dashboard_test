@@ -19,6 +19,10 @@ body {
   background: #fafafa;
 }
 
+ul li {
+  word-wrap: break-word;
+}
+
 ul li ul {
   padding-left: 20px;
 }

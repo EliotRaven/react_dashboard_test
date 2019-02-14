@@ -80,7 +80,7 @@ class Home extends React.Component {
               </nav>
 
               <Route path="/:id" component={Service} />
-              <Route path="/" component={Services} />
+              <Route exact path="/" component={Services} />
 
             </div>
           </div>
