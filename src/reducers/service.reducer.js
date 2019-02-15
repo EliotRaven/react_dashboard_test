@@ -3,7 +3,7 @@ import { serviceActionTypes } from '../action-types'
 const initState = {
     loading: true,
     error: {},
-    services: {}
+    services: []
 }
 
 const service = (state = initState, action) => {
@@ -19,7 +19,7 @@ const service = (state = initState, action) => {
                 ...state,
                 loading: action.loading,
                 error: action.error,
-                data: action.data
+                services: action.data
             }
         case serviceActionTypes.GET_SERVICE_FAILURE:
             return {

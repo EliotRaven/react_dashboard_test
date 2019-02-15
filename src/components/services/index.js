@@ -3,20 +3,19 @@ import connect from "react-redux/es/connect/connect";
 
 class Services extends React.Component {
   render () {
-    let services = (this.props.state.service.data) ? this.props.state.service.data.data.services : []
+    let {services} = this.props.state.service
+
     return (
       !services.length ? '' : services.map(service => (
-        <div key={service.id} className="container">
-          <div className="row">
-            <div className="col-sm">
-              domain : {service.domain}
-            </div>
-            <div className="col-sm">
-              service : {service.service}
-            </div>
-            <div className="col-sm">
-              status : {service.status}
-            </div>
+        <div key={service.id} className="row no-gutters">
+          <div className="col-sm-2">
+            id : {service.id}
+          </div>
+          <div className="col-sm-7">
+            links : {service.links.self}
+          </div>
+          <div className="col-sm-3">
+            type : {service.type}
           </div>
         </div>
       ))

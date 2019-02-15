@@ -16,7 +16,7 @@ class Service extends React.Component {
   }
 
   render () {
-    let service = (this.props.state.service.data) ? this.props.state.service.data.data.services.find(s => s.id === this.props.match.params.id) : {}
+    let service = (this.props.state.service.services) ? this.props.state.service.services.find(s => s.id === this.props.match.params.id) : {}
     return (
       !service ? '' :
       <ul>

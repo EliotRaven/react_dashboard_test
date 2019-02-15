@@ -1,4 +1,3 @@
-import API from '../helpers/api'
 import {history} from "../helpers";
 
 export const authService = {
@@ -11,18 +10,26 @@ export const authService = {
 
 function signin(credentials) {
     return new Promise((resolve, reject)=>{
-        API.call(
-          'post',
-          'https://t0vbba5oqk.execute-api.us-west-2.amazonaws.com/prod/jazz/login',
-          null,
-          {...credentials})
-          .then(res => {
-            setUserToStorage(res.data)
-            return resolve(res.data)
-        }).catch(err => {
-            return reject(err.response)
-        })
+        let user = getUserFromStorage(credentials)
+        if(!user) {
+          setUserToStorage(credentials)
+        }
+        if(user && user.password !== credentials.password)
+            return reject({message: 'wrong password'})
+
+        setAuthUserToStorage(credentials)
+
+        return resolve(getAuthUser())
     })
+}
+
+function getUserFromStorage(credentials) {
+    let users = JSON.parse(sessionStorage.getItem('users'))
+    if (!users) {
+      sessionStorage.setItem('users', JSON.stringify([]))
+      return null
+    }
+    return users.find(i => i.username === credentials.username)
 }
 
 function getAuthUser() {
@@ -35,11 +42,18 @@ function checkAuth() {
 }
 
 function getAuthHeaders () {
-    return getAuthUser() ? {'Authorization': `${getAuthUser().data.token}`} : null
+    return getAuthUser() ? {'Authorization': `${getAuthUser().token}`} : null
+}
+
+function setAuthUserToStorage(user) {
+  sessionStorage.setItem('auth-user', JSON.stringify(user))
 }
 
 function setUserToStorage(user) {
-    sessionStorage.setItem('auth-user', JSON.stringify(user))
+  let users = JSON.parse(sessionStorage.getItem('users'))
+  users.push(user)
+
+  sessionStorage.setItem('users', JSON.stringify(users))
 }
 
 function logout() {

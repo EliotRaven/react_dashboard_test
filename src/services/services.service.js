@@ -1,4 +1,48 @@
-import API from '../helpers/api'
+let data = [
+  {
+    "type": "people",
+    "id": "9",
+    "attributes": {
+      "firstName": "Dan",
+      "lastName": "Gebhardt",
+      "twitter": "dgeb"
+    },
+    "links": {
+      "self": "http://example.com/people/9"
+    }
+  },
+  {
+    "type": "comments",
+    "id": "5",
+    "attributes": {
+      "body": "First!"
+    },
+    "relationships": {
+      "author": {
+        "data": { "type": "people", "id": "2" }
+      }
+    },
+    "links": {
+      "self": "http://example.com/comments/5"
+    }
+  },
+  {
+    "type": "article",
+    "id": "12",
+    "attributes": {
+      "body": "I like XML better"
+    },
+    "relationships": {
+      "author": {
+        "data": { "type": "people", "id": "9" }
+      }
+    },
+    "links": {
+      "self": "http://example.com/comments/12"
+    }
+  }
+]
+
 
 export const servicesService = {
     index
@@ -6,16 +50,6 @@ export const servicesService = {
 
 function index() {
     return new Promise((resolve, reject)=>{
-        API.call(
-          'get',
-          'https://t0vbba5oqk.execute-api.us-west-2.amazonaws.com/prod/jazz/services?limit=10&offset=0&status=creation_started,creation_failed,creation_completed,deletion_started,deletion_failed,active,inactive&',
-          null,
-          null
-        ).then(res => {
-            return resolve(res.data)
-        }).catch(err => {
-            sessionStorage.clear()
-            return reject(err.response)
-        })
+        resolve(data)
     })
 }
