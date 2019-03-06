@@ -37,7 +37,7 @@ class Login extends React.Component {
                                            id="password"
                                            placeholder="Enter password" />
                                 </div>
-                                <button type="submit" disabled={loading} className="btn btn-primary">
+                                <button type="submit" disabled={loading} className="btn btn-success">
                                     Submit
                                 </button>
 
