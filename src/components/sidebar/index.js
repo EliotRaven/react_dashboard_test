@@ -11,7 +11,7 @@ class Sidebar extends React.Component {
         <div className="sidebar-header">
           <h3>
             <i className="material-icons fz-50">account_circle</i>
-            <span>{ username }</span>
+            <span>{ username.split('@')[0] }</span>
           </h3>
         </div>
 
