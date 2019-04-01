@@ -16,20 +16,20 @@ class App extends Component {
     const {isAuth} = this.props.state.auth
 
     return (
-        <Router history={history}>
-            <Route render={({location}) => (
-              <div className="App">
-                <Switch location={location}>
-                  {isAuth
-                    ?
-                    <Route path='/' component={Home} />
-                    :
-                    <Route component={Login} />
-                  }
-                </Switch>
-              </div>
-            )} />
-        </Router>
+      <Router history={history}>
+        <Route render={({location}) => (
+          <div className="App">
+            <Switch location={location}>
+              {isAuth
+                ?
+                <Route path='/' component={Home} />
+                :
+                <Route component={Login} />
+              }
+            </Switch>
+          </div>
+        )} />
+      </Router>
     );
   }
 }

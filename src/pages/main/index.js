@@ -1,8 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { ChartPie, ChartBar, ChartHBar, ChartLine } from '../../components/charts'
+import { ColorInfoBlocks } from "../../components/color-info-blocks";
+
+import { statisticAction } from "../../actions";
 
 class Main extends React.Component {
+  componentWillMount(){
+    this.getData()
+  }
+
+  getData = () => {
+    this.props.dispatch(statisticAction.index())
+  }
+
   randInt = (min, max) => {
     return Math.round(min - 0.5 + Math.random() * (max - min + 1))
   }
@@ -28,51 +39,21 @@ class Main extends React.Component {
   }
 
   render () {
+    const { statistics } = this.props.state
+
     return (
       <div className="charts">
-        <div className="row pb-5">
-          <div className="col-12 col-sm-6 col-lg-3">
-            <div className="p-3 mb-2 bg-dark text-white info-box">
-              <div className="d-flex justify-content-start align-items-center h1 m-0">
-                <i className="material-icons m-0 fz50">perm_identity</i>
-                <span className="pl-2">{this.formatData(this.randInt(1e3, 1e5), 1)} Users</span>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-sm-6 col-lg-3">
-            <div className="p-3 mb-2 bg-success text-white info-box">
-              <div className="d-flex justify-content-start align-items-center h1 m-0">
-                <i className="material-icons m-0 fz50">payment</i>
-                <span className="pl-2">{this.formatData(this.randInt(1e6, 1e7), 1)}$</span>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-sm-6 col-lg-3">
-            <div className="p-3 mb-2 bg-danger text-white info-box">
-              <div className="d-flex justify-content-start align-items-center h1 m-0">
-                <i className="material-icons m-0 fz50">add_shopping_cart</i>
-                <span className="pl-2">{this.formatData(this.randInt(1e4, 1e6), 1)} Products</span>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-sm-6 col-lg-3">
-            <div className="p-3 mb-2 bg-info text-white info-box">
-              <div className="d-flex justify-content-start align-items-center h1 m-0">
-                <i className="material-icons m-0 fz50">language</i>
-                <span className="pl-2">{this.formatData(this.randInt(100, 1000), 1)} Locations</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ColorInfoBlocks statistics={statistics.data} />
         {/**/}
         <div className="row pb-5 justify-content-md-center">
           <div className="col-12 col-sm-10 col-xl-6 pb-5">
-            <ChartLine />
+            {!statistics.data.articles ? '' : <ChartLine statistics={statistics.data.articles.statistic} />}
           </div>
           <div className="col-12 col-sm-10 col-xl-6">
             <div className="embed-responsive embed-responsive-16by9">
-              <iframe title="video" className="embed-responsive-item" src="https://www.youtube.com/embed/fJ9rUzIMcZQ"
-                      frameBorder="0"
+              <iframe src="https://www.youtube.com/embed/CqJSWimYcuY" frameBorder="0"
+                      title="https://www.youtube.com/embed/CqJSWimYcuY"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen />
             </div>
           </div>
@@ -80,32 +61,40 @@ class Main extends React.Component {
         {/**/}
         <div className="row pb-5 justify-content-md-center">
           <div className="col-12 col-sm-10 col-xl-6 pb-5">
-            <ChartHBar />
+            {!statistics.data.users ? '' : <ChartHBar data={statistics.data.users.statistic} label="New users" />}
           </div>
           <div className="col-12 col-sm-10 col-xl-6">
+            {!statistics.data.articles ? '' :
             <div className="card">
+              <h2 className="m-3 text-center">New Article</h2>
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p className="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                <div className="d-flex align-items-center">
+                  <div className="align-self-center">
+                    <img src={statistics.data.articles.last.image} alt={statistics.data.articles.last.title} />
+                  </div>
+                  <div className="align-self-center pl-3">
+                    <h5 className="card-title mt-4 mb-4">{statistics.data.articles.last.title}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">{statistics.data.articles.last.source}</h6>
+                  </div>
+                </div>
+                <p className="card-text mt-3">
+                  {statistics.data.articles.last.description}
                 </p>
-                <div className="alert alert-primary" role="alert">This is a primary alert—check it out!</div>
-                <div className="alert alert-success" role="alert">This is a success alert—check it out!</div>
-                <div className="alert alert-danger" role="alert">This is a danger alert—check it out!</div>
-                <a href="/#" className="card-link">Card link</a>
-                <a href="/#" className="card-link">Another link</a>
+                <a href={statistics.data.articles.last.source} className="card-link btn btn-outline-warning">Read more</a>
               </div>
             </div>
+            }
           </div>
         </div>
         {/**/}
         <div className="row pb-5 justify-content-md-center">
           <div className="col-12 col-sm-10 col-xl-6 pb-5">
-            <ChartBar />
+            {!statistics.data.comments ? '' : <ChartBar statistics={statistics.data.comments.statistic} label="Comments from month" />}
           </div>
           <div className="col-12 col-sm-10 col-xl-6">
-            <ChartPie />
+            {!(statistics.data.comments && statistics.data.users && statistics.data.articles) ? '' :
+              <ChartPie statistics={statistics.data} labels={['Articles', 'Users', 'Comments']} />
+            }
           </div>
         </div>
       </div>

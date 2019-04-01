@@ -5,13 +5,21 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chart.js": "^2.7.3",
+    "draft-js": "^0.10.5",
+    "draft-js-export-html": "^1.3.3",
+    "draft-js-exporter": "^0.0.5",
+    "draft-js-import-html": "^1.3.3",
     "history": "^4.7.2",
+    "query-string": "^6.4.0",
     "react": "^16.8.1",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.8.1",
+    "react-paginate": "^6.3.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.4",
+    "react-select": "^2.4.2",
+    "react-transition-group": "^2.6.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
@@ -21,7 +29,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "create-action": "sh ./shell-templates/create-action.sh",
+    "create-action-type": "sh ./shell-templates/create-actiontype.sh",
+    "create-reducer": "sh ./shell-templates/create-reducer.sh",
+    "create-saga": "sh ./shell-templates/create-saga.sh",
+    "create-entity-box": "yarn create-action $npm_config_arg && yarn create-action-type $npm_config_arg && yarn create-reducer $npm_config_arg && yarn create-saga $npm_config_arg"
   },
   "eslintConfig": {
     "extends": "react-app"

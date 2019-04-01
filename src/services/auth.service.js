@@ -1,4 +1,4 @@
-import {history} from "../helpers";
+import api from "../helpers/api";
 
 export const authService = {
     signin,
@@ -9,27 +9,15 @@ export const authService = {
 }
 
 function signin(credentials) {
-    return new Promise((resolve, reject)=>{
-        let user = getUserFromStorage(credentials)
-        if(!user) {
-          setUserToStorage(credentials)
-        }
-        if(user && user.password !== credentials.password)
-            return reject({message: 'wrong password'})
-
-        setAuthUserToStorage(credentials)
-
-        return resolve(getAuthUser())
-    })
-}
-
-function getUserFromStorage(credentials) {
-    let users = JSON.parse(sessionStorage.getItem('users'))
-    if (!users) {
-      sessionStorage.setItem('users', JSON.stringify([]))
-      return null
-    }
-    return users.find(i => i.username === credentials.username)
+  return new Promise((resolve, reject)=>{
+    return api.call('post', `/login`, null, credentials, true)
+      .then(res => {
+        setAuthUserToStorage(res.data.user)
+        setSessionToStorage(res.data.session)
+        return resolve(res.data)
+      })
+      .catch(error => reject(error.response))
+  })
 }
 
 function getAuthUser() {
@@ -38,25 +26,34 @@ function getAuthUser() {
 }
 
 function checkAuth() {
-    return !!JSON.parse(sessionStorage.getItem('auth-user'))
+    return !!sessionStorage.hasOwnProperty('auth-user')
 }
 
 function getAuthHeaders () {
-    return getAuthUser() ? {'Authorization': `${getAuthUser().token}`} : null
+    return getAuthUser() ? {'auth-token': `${getToken()}`} : null
 }
 
 function setAuthUserToStorage(user) {
   sessionStorage.setItem('auth-user', JSON.stringify(user))
 }
 
-function setUserToStorage(user) {
-  let users = JSON.parse(sessionStorage.getItem('users'))
-  users.push(user)
+function setSessionToStorage(session) {
+  sessionStorage.setItem('session', JSON.stringify(session))
+}
 
-  sessionStorage.setItem('users', JSON.stringify(users))
+function getToken() {
+  return JSON.parse(sessionStorage.getItem('session')).token
 }
 
 function logout() {
-    sessionStorage.removeItem('auth-user')
-    history.push('/')
+  return new Promise((resolve, reject)=>{
+    return api.call('post', '/logout', null, {token: getToken()}, true)
+      .then(() => {
+        sessionStorage.removeItem('auth-user')
+        sessionStorage.removeItem('session')
+        return resolve(false)
+      })
+      .catch(error => reject(error.response))
+  })
+
 }

@@ -6,10 +6,10 @@ class Login extends React.Component {
     login = (e) => {
         e.preventDefault();
         this.props.dispatch(authAction.login({
-            username: this.username.value,
-            password: this.password.value
+          email: this.email.value,
+          password: this.password.value
         }))
-        this.username = ''
+        this.email = ''
         this.password = ''
     }
 
@@ -22,16 +22,18 @@ class Login extends React.Component {
                         <div className="col-8">
                             <form onSubmit={this.login}>
                                 <div className="form-group">
-                                    <label htmlFor="username">Username</label>
+                                    <label htmlFor="email">Email</label>
                                     <input type="text"
+                                           name='email'
                                            className="form-control"
-                                           id="username"
-                                           ref={(input)=>this.username = input}
-                                           placeholder="Enter username" />
+                                           id="email"
+                                           ref={(input)=>this.email = input}
+                                           placeholder="Enter email" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="name">Password</label>
                                     <input type="password"
+                                           name='password'
                                            className="form-control"
                                            ref={(input)=>this.password = input}
                                            id="password"
