@@ -7,7 +7,7 @@ function* login (action) {
         const data = yield authService.signin(action.formdata)
         yield put({type: authActionTypes.GET_LOGIN_SUCCESS, data, loading: false, error: {}})
     } catch (error) {
-        yield put({type: authActionTypes.GET_LOGIN_FAILURE, error, loading: false})
+        yield put({type: authActionTypes.GET_LOGIN_FAILURE, error: error || {data: {message: 'Something went wrong!'}}, loading: false})
     }
 }
 

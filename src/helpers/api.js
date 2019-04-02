@@ -1,10 +1,11 @@
 import axios from 'axios'
 import {authService} from "../services";
+import env from '../env'
 
 class API {
     call(method, uri, params=null, data=null, auth=false){
-        let apiUrl = 'http://localhost:8080/api/v1'
-        let authUrl = 'http://localhost:8080/auth'
+        let apiUrl = env.api
+        let authUrl = env.auth
         let url = auth ? authUrl : apiUrl
         let headers = {
             ...authService.getAuthHeaders() || '',

@@ -43,7 +43,7 @@ class Login extends React.Component {
                                     Submit
                                 </button>
 
-                                {error.data && <div className="alert alert-danger mt-2">{error.data.message}</div>}
+                                {error && error.data && <div className="alert alert-danger mt-2">{error.data.message}</div>}
                             </form>
                         </div>
                     </div>

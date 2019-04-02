@@ -18,9 +18,17 @@ class Sidebar extends React.Component {
         <ul className="list-unstyled components">
           <li>
             <Link to="/">Home</Link>
+          </li>
+          <li>
             <Link to="/articles">Articles</Link>
+          </li>
+          <li>
             <Link to="/users">Users</Link>
+          </li>
+          <li>
             <Link to="/roles">Roles</Link>
+          </li>
+          <li>
             <Link to="/comments">Comments</Link>
           </li>
         </ul>

@@ -18,14 +18,28 @@ class ChartHBar extends React.Component {
             hoverBorderColor: 'rgba(255,99,132,1)',
             data: Object.values(props.data)
           }
-        ]
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       }
     }
   }
 
   render() {
     return (
-      <HorizontalBar data={this.state.data} />
+      <HorizontalBar data={this.state.data} option={this.state.options}/>
     );
   }
 }

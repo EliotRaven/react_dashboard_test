@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ChartPie, ChartBar, ChartHBar, ChartLine } from '../../components/charts'
 import { ColorInfoBlocks } from "../../components/color-info-blocks";
+import { Card } from "../../components/card";
 
 import { statisticAction } from "../../actions";
 
@@ -39,15 +40,15 @@ class Main extends React.Component {
   }
 
   render () {
-    const { statistics } = this.props.state
+    const statistics = this.props.state.statistics.data
 
     return (
       <div className="charts">
-        <ColorInfoBlocks statistics={statistics.data} />
+        <ColorInfoBlocks statistics={statistics} />
         {/**/}
         <div className="row pb-5 justify-content-md-center">
           <div className="col-12 col-sm-10 col-xl-6 pb-5">
-            {!statistics.data.articles ? '' : <ChartLine statistics={statistics.data.articles.statistic} />}
+            {!statistics.articles ? '' : <ChartLine statistics={statistics.articles.statistic} />}
           </div>
           <div className="col-12 col-sm-10 col-xl-6">
             <div className="embed-responsive embed-responsive-16by9">
@@ -61,39 +62,22 @@ class Main extends React.Component {
         {/**/}
         <div className="row pb-5 justify-content-md-center">
           <div className="col-12 col-sm-10 col-xl-6 pb-5">
-            {!statistics.data.users ? '' : <ChartHBar data={statistics.data.users.statistic} label="New users" />}
+            {!statistics.users ? '' : <ChartHBar data={statistics.users.statistic} label="New users" />}
           </div>
           <div className="col-12 col-sm-10 col-xl-6">
-            {!statistics.data.articles ? '' :
-            <div className="card">
-              <h2 className="m-3 text-center">New Article</h2>
-              <div className="card-body">
-                <div className="d-flex align-items-center">
-                  <div className="align-self-center">
-                    <img src={statistics.data.articles.last.image} alt={statistics.data.articles.last.title} />
-                  </div>
-                  <div className="align-self-center pl-3">
-                    <h5 className="card-title mt-4 mb-4">{statistics.data.articles.last.title}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{statistics.data.articles.last.source}</h6>
-                  </div>
-                </div>
-                <p className="card-text mt-3">
-                  {statistics.data.articles.last.description}
-                </p>
-                <a href={statistics.data.articles.last.source} className="card-link btn btn-outline-warning">Read more</a>
-              </div>
-            </div>
+            {!(statistics.articles && statistics.articles.last) ? '' :
+              <Card article={statistics.articles.last} />
             }
           </div>
         </div>
         {/**/}
         <div className="row pb-5 justify-content-md-center">
           <div className="col-12 col-sm-10 col-xl-6 pb-5">
-            {!statistics.data.comments ? '' : <ChartBar statistics={statistics.data.comments.statistic} label="Comments from month" />}
+            {!statistics.comments ? '' : <ChartBar statistics={statistics.comments.statistic} label="Comments from month" />}
           </div>
           <div className="col-12 col-sm-10 col-xl-6">
-            {!(statistics.data.comments && statistics.data.users && statistics.data.articles) ? '' :
-              <ChartPie statistics={statistics.data} labels={['Articles', 'Users', 'Comments']} />
+            {!(statistics.comments && statistics.users && statistics.articles) ? '' :
+              <ChartPie statistics={statistics} labels={['Articles', 'Users', 'Comments']} />
             }
           </div>
         </div>

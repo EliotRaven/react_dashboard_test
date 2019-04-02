@@ -33,7 +33,7 @@ class ColorInfoBlocks extends React.Component {
             <div className="p-3 mb-2 bg-dark text-white info-box">
               <div className="d-flex justify-content-start align-items-center h1 m-0">
                 <i className="material-icons m-0 fz50">perm_identity</i>
-                <span className="pl-2">{this.props.statistics.users && this.props.statistics.users.count} Users</span>
+                <span className="pl-2">{this.props.statistics.users ? this.props.statistics.users.count : 0} Users</span>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@ class ColorInfoBlocks extends React.Component {
             <div className="p-3 mb-2 bg-success text-white info-box">
               <div className="d-flex justify-content-start align-items-center h1 m-0">
                 <i className="material-icons m-0 fz50">library_books</i>
-                <span className="pl-2">{this.props.statistics.articles && this.props.statistics.articles.count} Articles</span>
+                <span className="pl-2">{this.props.statistics.articles ? this.props.statistics.articles.count : 0} Articles</span>
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@ class ColorInfoBlocks extends React.Component {
             <div className="p-3 mb-2 bg-danger text-white info-box">
               <div className="d-flex justify-content-start align-items-center h1 m-0">
                 <i className="material-icons m-0 fz50">comment</i>
-                <span className="pl-2">{this.props.statistics.comments && this.props.statistics.comments.count} Comments</span>
+                <span className="pl-2">{this.props.statistics.comments ? this.props.statistics.comments.count : 0} Comments</span>
               </div>
             </div>
           </div>
