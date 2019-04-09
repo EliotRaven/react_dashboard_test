@@ -1,12 +1,8 @@
 import React from 'react'
-import {authAction} from "../../actions";
+import { authAction } from "../../modules/auth";
 import connect from "react-redux/es/connect/connect";
 
 class Navigation extends React.Component {
-  componentWillMount(){
-    this.setState({show: this.props.show})
-  }
-
   logout = (e) => {
     e.preventDefault()
     this.props.dispatch(authAction.logout())
@@ -17,7 +13,7 @@ class Navigation extends React.Component {
   }
 
   render () {
-    let show = this.props.show
+    const show = this.props.show
     return (
       <nav className="navbar navbar-expand-lg navbar-light text-white">
         <div className="container-fluid">
@@ -46,9 +42,7 @@ class Navigation extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = state => ({state});
 
 const connectionNavigation = connect(mapStateToProps)(Navigation);
-export {connectionNavigation as Navigation}
+export {connectionNavigation as Navigation};

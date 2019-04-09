@@ -1,46 +1,21 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { ChartPie, ChartBar, ChartHBar, ChartLine } from '../../components/charts'
-import { ColorInfoBlocks } from "../../components/color-info-blocks";
-import { Card } from "../../components/card";
-
-import { statisticAction } from "../../actions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { ChartPie, ChartBar, ChartHBar, ChartLine } from '../../components/charts';
+import { ColorInfoBlocks } from '../../components/color-info-blocks';
+import { Card } from '../../components/card';
+import { statisticAction } from '../../modules/statistic';
 
 class Main extends React.Component {
   componentWillMount(){
-    this.getData()
+    this.getData();
   }
 
   getData = () => {
-    this.props.dispatch(statisticAction.index())
-  }
-
-  randInt = (min, max) => {
-    return Math.round(min - 0.5 + Math.random() * (max - min + 1))
-  }
-
-  formatData = (num, digits) => {
-    let si = [
-      { value: 1, symbol: "" },
-      { value: 1E3, symbol: "k" },
-      { value: 1E6, symbol: "M" },
-      { value: 1E9, symbol: "G" },
-      { value: 1E12, symbol: "T" },
-      { value: 1E15, symbol: "P" },
-      { value: 1E18, symbol: "E" }
-    ];
-    let rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-    let i;
-    for (i = si.length - 1; i > 0; i--) {
-      if (num >= si[i].value) {
-        break;
-      }
-    }
-    return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
+    this.props.dispatch(statisticAction.index());
   }
 
   render () {
-    const statistics = this.props.state.statistics.data
+    const statistics = this.props.state.statistic.data;
 
     return (
       <div className="charts">
@@ -86,9 +61,7 @@ class Main extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = state => ({state});
 
 const connectionHome = connect(mapStateToProps)(Main);
-export {connectionHome as Main}
+export {connectionHome as Main};

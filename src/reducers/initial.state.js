@@ -3,7 +3,7 @@ const initialState = {
   error: {},
   data: [],
   item: {},
-  pagination: {}
-}
+  pagination: {},
+};
 
-export default initialState
+export default initialState;

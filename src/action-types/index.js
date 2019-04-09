@@ -1,6 +1,0 @@
-export * from './auth.action-types'
-export * from './articles.action-types'
-export * from './user.action-types'
-export * from './role.action-types'
-export * from './comment.action-types'
-export * from './statistic.action-types'

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { Router, Route, Switch } from 'react-router-dom'
-import {history} from "./helpers"
-import { authAction } from "./actions";
-import { connect } from 'react-redux'
+import { Router, Route, Switch } from 'react-router-dom';
+import { history } from './helpers';
+import { authAction } from "./modules/auth";
+import { connect } from 'react-redux';
 
-import {Home} from './pages/home'
-import {Login} from './pages/login'
+import { Home } from './pages/home';
+import { Login } from './pages/login';
 
 class App extends Component {
   componentWillMount () {
-    this.props.dispatch(authAction.checkAuth())
+    this.props.dispatch(authAction.checkAuth());
   }
 
   render() {
-    const {isAuth} = this.props.state.auth
+    const {isAuth} = this.props.state.auth;
 
     return (
       <Router history={history}>
@@ -34,9 +34,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-    return {state};
-}
+const mapStateToProps = state => ({state});
 
 const connectedApp = connect(mapStateToProps)(App);
 export { connectedApp as App };

@@ -1,32 +1,32 @@
-import React from 'react'
-import { connect } from "react-redux";
-import { roleAction } from "../../actions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { roleAction } from '../../modules/role';
 import { Link } from 'react-router-dom'
-import ReactPaginate from "react-paginate";
-import {history} from "../../helpers";
-import queryString from "query-string";
+import ReactPaginate from 'react-paginate';
+import { history } from '../../helpers';
+import queryString from 'query-string';
 
 class Roles extends React.Component {
   componentWillMount(){
-    this.getRoles(queryString.parse(this.props.location.search).page)
+    this.getRoles(queryString.parse(this.props.location.search).page);
   }
 
   remove = (id) => {
-    this.props.dispatch(roleAction.remove(id))
+    this.props.dispatch(roleAction.remove(id));
   }
 
   getRoles = (page = 1) => {
-    this.props.dispatch(roleAction.index({page}))
+    this.props.dispatch(roleAction.index({page}));
   }
 
   onPageChange = (page) => {
     if((page.selected + 1) !== parseInt(this.props.state.roles.pagination.page))
-      history.push({ pathname: "/roles", search: `?page=${parseInt(page.selected) + 1}` })
+      history.push({ pathname: "/roles", search: `?page=${parseInt(page.selected) + 1}` });
   }
 
   render () {
-    let { roles } = this.props.state
-    const { pagination } = this.props.state.roles
+    const { roles } = this.props.state;
+    const { pagination } = this.props.state.roles;
 
     return (
       <div className="roles">
@@ -97,9 +97,7 @@ class Roles extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = state => ({state})
 
 const connectionRoles = connect(mapStateToProps)(Roles);
-export {connectionRoles as Roles}
+export {connectionRoles as Roles};

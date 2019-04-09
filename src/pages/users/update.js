@@ -1,21 +1,22 @@
-import React from 'react'
+import React from "react";
 import { UserForm } from "../../components/forms";
 import connect from "react-redux/es/connect/connect";
-import {roleAction, userAction} from "../../actions";
+import { userAction } from "../../modules/user";
+import { roleAction } from "../../modules/role";
 
 class UpdateUser extends React.Component {
   componentWillMount(){
-    this.props.dispatch(userAction.show(this.props.match.params.id))
-    this.props.dispatch(roleAction.list())
+    this.props.dispatch(userAction.show(this.props.match.params.id));
+    this.props.dispatch(roleAction.list());
   }
 
   onSubmit = data => {
-    this.props.dispatch(userAction.update(data, this.props.match.params.id))
+    this.props.dispatch(userAction.update(data, this.props.match.params.id));
   }
 
   render() {
-    let {loading, item} = this.props.state.users
-    let roles = this.props.state.roles.data
+    let {loading, item} = this.props.state.users;
+    let roles = this.props.state.roles.data;
 
     return (
       <div className='update-user'>
@@ -26,9 +27,7 @@ class UpdateUser extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = state => ({state});
 
 const connectionUpdateUser = connect(mapStateToProps)(UpdateUser);
-export {connectionUpdateUser as UpdateUser}
+export {connectionUpdateUser as UpdateUser};

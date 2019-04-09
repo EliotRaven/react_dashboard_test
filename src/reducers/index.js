@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import auth from './auth.reducer';
-import articles from './articles.reducer';
-import users from './user.reducer';
-import roles from './role.reducer';
-import comments from './comment.reducer';
-import statistics from './statistic.reducer';
+import { auth } from '../modules/auth';
+import { articles } from '../modules/article';
+import { users } from '../modules/user';
+import { roles } from '../modules/role';
+import { comments } from '../modules/comment';
+import { statistic } from '../modules/statistic';
 
 const rootReducer = combineReducers({
   auth,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   users,
   roles,
   comments,
-  statistics
+  statistic
 });
 
 export default rootReducer;

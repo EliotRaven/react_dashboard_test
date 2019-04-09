@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {authService} from "../services";
+import { authService } from "../modules/auth";
 import env from '../env'
 
 class API {

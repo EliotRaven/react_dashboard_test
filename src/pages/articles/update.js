@@ -1,19 +1,19 @@
 import React from 'react'
-import { ArticleForm } from "../../components/forms";
-import connect from "react-redux/es/connect/connect";
-import {articlesAction} from "../../actions";
+import { ArticleForm } from '../../components/forms';
+import connect from 'react-redux/es/connect/connect';
+import { articlesAction } from '../../modules/article';
 
 class UpdateArticle extends React.Component {
   componentWillMount(){
-    this.props.dispatch(articlesAction.show(this.props.match.params.id))
+    this.props.dispatch(articlesAction.show(this.props.match.params.id));
   }
 
   onSubmit = data => {
-    this.props.dispatch(articlesAction.update(data, this.props.match.params.id))
+    this.props.dispatch(articlesAction.update(data, this.props.match.params.id));
   }
 
   render() {
-    const {loading, item} = this.props.state.articles
+    const {loading, item} = this.props.state.articles;
 
     return (
       <div className='update-article'>
@@ -23,9 +23,7 @@ class UpdateArticle extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = state => ({state});
 
 const connectionUpdateArticle = connect(mapStateToProps)(UpdateArticle);
-export {connectionUpdateArticle as UpdateArticle}
+export {connectionUpdateArticle as UpdateArticle};

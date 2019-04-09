@@ -1,21 +1,23 @@
 import React from 'react'
-import { CommentForm } from "../../components/forms";
-import connect from "react-redux/es/connect/connect";
-import {articlesAction, commentAction, userAction} from "../../actions";
+import { CommentForm } from '../../components/forms';
+import { connect } from 'react-redux';
+import { articlesAction } from '../../modules/article';
+import { commentAction } from '../../modules/comment';
+import { userAction } from '../../modules/user';
 
 class CreateComment extends React.Component {
   componentWillMount(){
-    this.props.dispatch(userAction.list())
-    this.props.dispatch(articlesAction.list())
+    this.props.dispatch(userAction.list());
+    this.props.dispatch(articlesAction.list());
   }
 
   onSubmit = data => {
-    this.props.dispatch(commentAction.create(data))
+    this.props.dispatch(commentAction.create(data));
   }
 
   render() {
-    let articles = this.props.state.articles.data
-    let users = this.props.state.users.data
+    let articles = this.props.state.articles.data;
+    let users = this.props.state.users.data;
 
     return (
       <div className='create-user'>
@@ -28,9 +30,7 @@ class CreateComment extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = state => ({state});
 
 const connectionCreateComment = connect(mapStateToProps)(CreateComment);
-export {connectionCreateComment as CreateComment}
+export {connectionCreateComment as CreateComment};

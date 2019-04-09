@@ -1,6 +1,0 @@
-export * from './auth.service'
-export * from './articles.service'
-export * from './user.service'
-export * from './role.service'
-export * from './comment.service'
-export * from './statistic.service'

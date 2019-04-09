@@ -1,32 +1,32 @@
 import React from 'react'
-import { connect } from "react-redux";
-import { commentAction } from "../../actions";
+import { connect } from 'react-redux';
+import { commentAction } from '../../modules/comment';
 import { Link } from 'react-router-dom'
-import ReactPaginate from "react-paginate";
-import {history} from "../../helpers";
-import queryString from "query-string";
+import ReactPaginate from 'react-paginate';
+import { history } from '../../helpers';
+import queryString from 'query-string';
 
 class Comments extends React.Component {
   componentWillMount(){
-    this.getComments(queryString.parse(this.props.location.search).page)
+    this.getComments(queryString.parse(this.props.location.search).page);
   }
 
   remove = (id) => {
-    this.props.dispatch(commentAction.remove(id))
+    this.props.dispatch(commentAction.remove(id));
   }
 
   getComments = (page = 1) => {
-    this.props.dispatch(commentAction.index({page}))
+    this.props.dispatch(commentAction.index({page}));
   }
 
   onPageChange = (page) => {
     if((page.selected + 1) !== parseInt(this.props.state.comments.pagination.page))
-      history.push({ pathname: "/comments", search: `?page=${parseInt(page.selected) + 1}` })
+      history.push({ pathname: "/comments", search: `?page=${parseInt(page.selected) + 1}` });
   }
 
   render () {
-    let { comments } = this.props.state
-    const { pagination } = this.props.state.comments
+    let { comments } = this.props.state;
+    const { pagination } = this.props.state.comments;
 
     return (
       <div className="users">
@@ -97,9 +97,7 @@ class Comments extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = state => ({state});
 
 const connectionComments = connect(mapStateToProps)(Comments);
-export {connectionComments as Comments}
+export {connectionComments as Comments};

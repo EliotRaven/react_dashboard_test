@@ -1,11 +1,11 @@
-import React from 'react'
-import { RoleForm } from "../../components/forms";
-import connect from "react-redux/es/connect/connect";
-import {roleAction} from "../../actions";
+import React from 'react';
+import { RoleForm } from '../../components/forms';
+import { connect } from 'react-redux';
+import { roleAction } from '../../modules/role';
 
 class CreateRole extends React.Component {
   onSubmit = data => {
-    this.props.dispatch(roleAction.create(data))
+    this.props.dispatch(roleAction.create(data));
   }
 
   render() {
@@ -17,9 +17,7 @@ class CreateRole extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = state => ({state});
 
 const connectionCreateRole = connect(mapStateToProps)(CreateRole);
-export {connectionCreateRole as CreateRole}
+export {connectionCreateRole as CreateRole};

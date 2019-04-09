@@ -31,12 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "create-action": "sh ./shell-templates/create-action.sh",
-    "create-action-type": "sh ./shell-templates/create-actiontype.sh",
-    "create-reducer": "sh ./shell-templates/create-reducer.sh",
-    "create-saga": "sh ./shell-templates/create-saga.sh",
-    "create-entity-box": "yarn create-action $npm_config_arg && yarn create-action-type $npm_config_arg && yarn create-reducer $npm_config_arg && yarn create-saga $npm_config_arg"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
