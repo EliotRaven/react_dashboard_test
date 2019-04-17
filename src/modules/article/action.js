@@ -1,5 +1,5 @@
-import { articlesActionTypes } from "./types";
-import baseAction from '../../actions/base.action'
+import { articlesActionTypes } from './types';
+import baseAction from '../../actions/base.action';
 
 const index = query => ({
   ...baseAction,

@@ -1,10 +1,10 @@
 import React from 'react'
-import {FormGroup} from "../form-group";
-import {FormSelect} from "../form-select";
+import { FormGroup } from '../form-group';
+import { FormSelect } from '../form-select';
 
 const iData = {
-  message: null
-}
+  message: null,
+};
 
 class CommentForm extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class CommentForm extends React.Component {
   formValidation(){
     return Object.keys(iData).reduce(
       (isValid, keyName) => isValid && keyName in this.state.form && !!this.state.form[keyName], true
-    )
+    );
   }
 
   onChange = (val) => {
@@ -27,64 +27,66 @@ class CommentForm extends React.Component {
         ...this.state.form,
         [val.target.name]: val.target.value
       }
-    })
+    });
   }
 
   findAndShowError = () => {
-    let formErrors = {}
+    const formErrors = {};
     Object.keys(this.state.formErrors).forEach(k => {
       formErrors[k] = this.state.form[k] ? null : 'Field is required'
     });
-    this.setState({formErrors})
+    this.setState({formErrors});
   }
 
   submit = (e) => {
-    e.preventDefault()
-    this.formValidation() ? this.props.onSubmit(this.state.form) : this.findAndShowError()
+    e.preventDefault();
+    this.formValidation() ? this.props.onSubmit(this.state.form) : this.findAndShowError();
   }
 
   cOptions = (props) => {
     return props.map(i => {
-      return {value: i.id, label: i.title || `${i.name} ${i.surname}`}
-    })
+      return {value: i.id, label: i.title || `${i.name} ${i.surname}`};
+    });
   }
 
   render() {
-    let comment = this.props.data ? this.props.data : {}
-    let {articles, users} = this.props
+    const comment = this.props.data ? this.props.data : {};
+    const { articles, users } = this.props;
 
     return(
-      <form onSubmit={this.submit}>
+      <form onSubmit={ this.submit }>
 
-        <FormSelect required={true}
+        <FormSelect required
                     name='author_id'
                     id='author_id'
                     label='Author'
-                    options={this.cOptions(users)}
-                    option={comment.author_id ? comment.author_id : null}
-                    error={this.state.formErrors.author_id}
-                    onChange={this.onChange} />
+                    options={ this.cOptions(users) }
+                    option={ comment.author_id ? comment.author_id : null }
+                    error={ this.state.formErrors.author_id }
+                    onChange={ this.onChange } />
 
-        <FormSelect required={true}
+        <FormSelect required
                     name='article_id'
                     id='article_id'
                     label='Article'
-                    options={this.cOptions(articles)}
-                    option={comment.article_id ? comment.article_id : null}
-                    error={this.state.formErrors.article_id}
-                    onChange={this.onChange} />
+                    options={ this.cOptions(articles) }
+                    option={ comment.article_id ? comment.article_id : null }
+                    error={ this.state.formErrors.article_id }
+                    onChange={ this.onChange } />
 
-        <FormGroup required={true}
+        <FormGroup required
                    name='message'
                    id='message'
                    type='text'
                    label='Message'
                    value={comment.message ? comment.message : null}
-                   onChange={this.onChange} />
+                   onChange={ this.onChange } />
 
         <div className="d-flex justify-content-end">
-          <button type="submit" className="btn btn-outline-dark btn-lg d-flex justify-content-between align-items-center">
-            <span>{this.props.btnText}</span> {this.props.loading && <i className="material-icons pl-2 custom-spin">autorenew</i>}
+          <button type='submit'
+                  className="btn btn-outline-dark btn-lg d-flex justify-content-between align-items-center">
+            <span>{ this.props.btnText }</span>
+            { this.props.loading && <i className="material-icons pl-2 custom-spin">autorenew</i> }
           </button>
         </div>
       </form>
@@ -92,4 +94,4 @@ class CommentForm extends React.Component {
   }
 }
 
-export {CommentForm}
+export { CommentForm };

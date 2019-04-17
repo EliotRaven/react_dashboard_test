@@ -1,8 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 class FormGroup extends React.Component {
   onChange = (e) => {
-    console.log(e)
     this.props.onChange(e)
   }
 
@@ -20,8 +19,8 @@ class FormGroup extends React.Component {
                onChange={ this.onChange } />
         {this.props.error && <div className="text-danger m-2" role="alert">{this.props.error}</div>}
       </div>
-    )
+    );
   }
 }
 
-export {FormGroup}
+export { FormGroup };

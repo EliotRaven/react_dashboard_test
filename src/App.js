@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { history } from './helpers';
 import { authAction } from "./modules/auth";
-import { connect } from 'react-redux';
 
 import { Home } from './pages/home';
 import { Login } from './pages/login';

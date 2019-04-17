@@ -1,6 +1,6 @@
-import React from 'react'
-import { ArticleForm } from '../../components/forms';
+import React from 'react';
 import connect from 'react-redux/es/connect/connect';
+import { ArticleForm } from '../../components/forms';
 import { articlesAction } from '../../modules/article';
 
 class UpdateArticle extends React.Component {
@@ -17,7 +17,7 @@ class UpdateArticle extends React.Component {
 
     return (
       <div className='update-article'>
-        {item.id && <ArticleForm onSubmit={this.onSubmit} loading={loading} article={item} btnText="Update" />}
+        {item.id && <ArticleForm onSubmit={this.onSubmit} loading={loading} article={item} btnText='Update' />}
       </div>
     );
   }

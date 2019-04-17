@@ -44,5 +44,5 @@ export const roleAction = {
   create,
   update,
   remove,
-  list
+  list,
 };

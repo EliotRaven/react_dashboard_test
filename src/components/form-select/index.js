@@ -1,13 +1,13 @@
-import React from 'react'
-import Select from 'react-select'
+import React from 'react';
+import Select from 'react-select';
 
 class FormSelect extends React.Component {
   onChange = (e) => {
-    this.props.onChange({target: {name: this.props.name, value: e.value}})
+    this.props.onChange({target: {name: this.props.name, value: e.value}});
   }
 
   cOption = () => {
-    return this.props.options.find(r => r.value === this.props.option)
+    return this.props.options.find(r => r.value === this.props.option);
   }
 
   render() {
@@ -32,4 +32,4 @@ class FormSelect extends React.Component {
   }
 }
 
-export {FormSelect}
+export { FormSelect };

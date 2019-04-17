@@ -8,7 +8,7 @@ const initialState = {
 
 export const statistic = (state = initialState, action) => {
   switch(action.type){
-    //-----------------GET_STATISTIC----------------------
+    // -----------------GET_STATISTIC----------------------
     case statisticActionTypes.GET_STATISTIC_REQUEST:
       return {
         ...state,

@@ -1,7 +1,7 @@
-import { BaseService } from '../../services/base.service';
+import BaseService from '../../services/base.service';
 
 class StatisticService extends BaseService {
 
 }
 
-export default new StatisticService();
+export default new StatisticService('statistic');

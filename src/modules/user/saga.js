@@ -1,9 +1,7 @@
-import { put, takeEvery } from 'redux-saga/effects'
-import { history } from '../../helpers/index'
-import { userActionTypes } from './types'
+import { put, takeEvery } from 'redux-saga/effects';
+import { history } from '../../helpers';
+import { userActionTypes } from './types';
 import UserService from './service';
-
-const entity = 'user';
 
 function* index (action) {
   try {
@@ -43,7 +41,7 @@ function* list (action) {
 
 function* show (action) {
   try {
-    const data = yield UserService.show(entity, action.id);
+    const data = yield UserService.show(action.id);
     yield put({
       type: userActionTypes.GET_USER_SUCCESS,
       data,
@@ -61,7 +59,7 @@ function* show (action) {
 
 function* create (action) {
   try {
-    const data = yield UserService.create(entity, action.data);
+    const data = yield UserService.create(action.data);
     yield put({
       type: userActionTypes.CREATE_USER_SUCCESS,
       data,
@@ -80,7 +78,7 @@ function* create (action) {
 
 function* update (action) {
   try {
-    const data = yield UserService.update(entity, action.id, action.data);
+    const data = yield UserService.update(action.id, action.data);
     yield put({
       type: userActionTypes.UPDATE_USER_SUCCESS,
       data,
@@ -99,7 +97,7 @@ function* update (action) {
 
 function* remove (action) {
   try {
-    const data = yield UserService.remove(entity, action.id);
+    const data = yield UserService.remove(action.id);
     yield put({
       type: userActionTypes.DELETE_USER_SUCCESS,
       data,

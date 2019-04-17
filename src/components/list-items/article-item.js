@@ -1,17 +1,17 @@
-import React from 'react'
-import {Link} from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ArticleItem extends React.Component {
-  render(){
-    let { item, edit } = this.props
-    
+  render() {
+    const { item, edit } = this.props;
+
     return (
       <li className="item mb-4 list-group-item d-flex justify-content-between align-items-center flex-md-column flex-lg-row">
         {item.image &&
         <div className="item-image col-sm-12 col-md-12 col-lg-4 col-xl-4">
           <img className="d-block w-100" src={item.image} alt={item.title} />
         </div>}
-        <div className={(!item.image) ? "col-sm-12 col-md-12 col-lg-10 col-xl-10" : "col-sm-12 col-md-12 col-lg-6 col-xl-6"}>
+        <div className={(!item.image) ? 'col-sm-12 col-md-12 col-lg-10 col-xl-10' : 'col-sm-12 col-md-12 col-lg-6 col-xl-6'}>
           <div className="description">
             <h2>{item.title}</h2>
             <p>{item.description}</p>
@@ -36,4 +36,4 @@ class ArticleItem extends React.Component {
   }
 }
 
-export {ArticleItem}
+export { ArticleItem };

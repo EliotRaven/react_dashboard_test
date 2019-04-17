@@ -1,11 +1,12 @@
-import React from 'react'
-import {Link} from "react-router-dom";
-import connect from "react-redux/es/connect/connect";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Sidebar extends React.Component {
   render () {
-    let {authUser} = this.props.state.auth
-    let show = this.props.show
+    const {authUser} = this.props.state.auth;
+    const { show } = this.props;
+
     return (
       <nav id="sidebar" className={show ? '' : 'active'}>
         <div className="sidebar-header">
@@ -17,19 +18,19 @@ class Sidebar extends React.Component {
 
         <ul className="list-unstyled components">
           <li>
-            <Link to="/">Home</Link>
+            <Link to='/'>Home</Link>
           </li>
           <li>
-            <Link to="/articles">Articles</Link>
+            <Link to='/articles'>Articles</Link>
           </li>
           <li>
-            <Link to="/users">Users</Link>
+            <Link to='/users'>Users</Link>
           </li>
           <li>
-            <Link to="/roles">Roles</Link>
+            <Link to='/roles'>Roles</Link>
           </li>
           <li>
-            <Link to="/comments">Comments</Link>
+            <Link to='/comments'>Comments</Link>
           </li>
         </ul>
       </nav>
@@ -37,9 +38,7 @@ class Sidebar extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = (state) => ({state});
 
 const connectionSidebar = connect(mapStateToProps)(Sidebar);
-export {connectionSidebar as Sidebar}
+export { connectionSidebar as Sidebar };

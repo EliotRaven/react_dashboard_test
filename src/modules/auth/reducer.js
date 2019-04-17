@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const auth = (state = initialState, action) => {
-  switch(action.type){
+  switch(action.type) {
     case authActionTypes.CHECK_AUTH_REQUEST:
       return {
         ...state,

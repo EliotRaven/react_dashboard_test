@@ -1,6 +1,6 @@
 import React from 'react';
-import { RoleForm } from '../../components/forms';
 import { connect } from 'react-redux/';
+import { RoleForm } from '../../components/forms';
 import { roleAction } from '../../modules/role';
 
 class UpdateRole extends React.Component {
@@ -13,11 +13,11 @@ class UpdateRole extends React.Component {
   }
 
   render() {
-    let {loading, item} = this.props.state.roles;
+    const {loading, item} = this.props.state.roles;
 
     return (
       <div className='update-user'>
-        {item.name && <RoleForm onSubmit={this.onSubmit} loading={loading} data={item} btnText="Update" />}
+        {item.name && <RoleForm onSubmit={this.onSubmit} loading={loading} data={item} btnText='Update' />}
       </div>
     );
   }

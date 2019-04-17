@@ -1,12 +1,12 @@
-import "regenerator-runtime/runtime";
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
+import 'regenerator-runtime/runtime';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 // import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootSaga from '../sagas'
 
-import rootReducer from "../reducers";
+import rootReducer from '../reducers';
 
 // const loggerMiddleware = createLogger();
 
@@ -21,5 +21,4 @@ export const store = createStore(
     )
 );
 
-sagaMiddleware.run(rootSaga)
-
+sagaMiddleware.run(rootSaga);

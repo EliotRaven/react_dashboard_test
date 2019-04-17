@@ -1,9 +1,9 @@
 import React from 'react'
-import {Doughnut} from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 class ChartPie extends React.Component {
   constructor(props){
-    super()
+    super();
     this.state = {
       data: {
         labels: props.labels,
@@ -20,8 +20,8 @@ class ChartPie extends React.Component {
             '#FFCE56'
           ]
         }]
-      }
-    }
+      },
+    };
   }
 
   render () {
@@ -31,4 +31,4 @@ class ChartPie extends React.Component {
   }
 }
 
-export {ChartPie}
+export { ChartPie };

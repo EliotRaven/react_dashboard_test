@@ -2,7 +2,7 @@ const baseAction = {
   type: null,
   loading: true,
   item: {},
-  error: {}
-}
+  error: {},
+};
 
-export default baseAction
+export default baseAction;

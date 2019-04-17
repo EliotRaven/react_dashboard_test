@@ -3,7 +3,7 @@ const request = (state, action) => ({
   loading: action.loading,
   error: action.error,
   item: {},
-})
+});
 
 const success = (state, action) => ({
   ...state,

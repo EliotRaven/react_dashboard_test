@@ -1,6 +1,6 @@
 import React from 'react'
-import { CommentForm } from '../../components/forms';
 import { connect } from 'react-redux';
+import { CommentForm } from '../../components/forms';
 import { articlesAction } from '../../modules/article';
 import { commentAction } from '../../modules/comment';
 import { userAction } from '../../modules/user';
@@ -16,15 +16,15 @@ class CreateComment extends React.Component {
   }
 
   render() {
-    let articles = this.props.state.articles.data;
-    let users = this.props.state.users.data;
+    const articles = this.props.state.articles.data;
+    const users = this.props.state.users.data;
 
     return (
       <div className='create-user'>
         <CommentForm onSubmit={this.onSubmit}
                      articles={articles}
                      users={users}
-                     btnText="Create" />
+                     btnText='Create' />
       </div>
     );
   }

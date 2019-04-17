@@ -3,8 +3,6 @@ import { articlesActionTypes } from './types';
 import { history } from '../../helpers/index';
 import ArticlesService from './service';
 
-const entity = 'article';
-
 function* index (action) {
   try {
     const data = yield ArticlesService.index(action.query);
@@ -43,7 +41,7 @@ function* list (action) {
 
 function* show (action) {
   try {
-    const data = yield ArticlesService.show(entity, action.id);
+    const data = yield ArticlesService.show(action.id);
     yield put({
       type: articlesActionTypes.GET_ARTICLE_SUCCESS,
       data,
@@ -61,7 +59,7 @@ function* show (action) {
 
 function* create (action) {
   try {
-    const data = yield ArticlesService.create(entity, action.data);
+    const data = yield ArticlesService.create(action.data);
     yield put({
       type: articlesActionTypes.CREATE_ARTICLE_SUCCESS,
       data,
@@ -80,7 +78,7 @@ function* create (action) {
 
 function* update (action) {
   try {
-    const data = yield ArticlesService.update(entity, action.id, action.data);
+    const data = yield ArticlesService.update(action.id, action.data);
     yield put({
       type: articlesActionTypes.UPDATE_ARTICLE_SUCCESS,
       data,
@@ -99,7 +97,7 @@ function* update (action) {
 
 function* remove (action) {
   try {
-    const data = yield ArticlesService.remove(entity, action.id);
+    const data = yield ArticlesService.remove(action.id);
     yield put({
       type: articlesActionTypes.DELETE_ARTICLE_SUCCESS,
       data,

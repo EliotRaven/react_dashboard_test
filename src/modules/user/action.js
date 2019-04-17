@@ -1,5 +1,5 @@
 import { userActionTypes } from './types';
-import baseAction from '../../actions/base.action'
+import baseAction from '../../actions/base.action';
 
 const index = query => ({
   ...baseAction,
@@ -44,5 +44,5 @@ export const userAction = {
   create,
   update,
   remove,
-  list
+  list,
 };

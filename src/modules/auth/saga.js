@@ -1,5 +1,5 @@
-import { put, takeEvery } from 'redux-saga/effects'
-import { authActionTypes } from './types'
+import { put, takeEvery } from 'redux-saga/effects';
+import { authActionTypes } from './types';
 import { authService } from './service';
 
 function* login (action) {

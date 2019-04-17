@@ -1,6 +1,6 @@
 import React from 'react'
-import {FormGroup} from "../form-group";
-import { FormSelect } from "../form-select";
+import { FormGroup } from '../form-group';
+import { FormSelect } from '../form-select';
 
 const iData = {
   name: null,
@@ -8,7 +8,7 @@ const iData = {
   email: null,
   role_id: null,
   password: null,
-}
+};
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class UserForm extends React.Component {
   }
 
   findAndShowError = () => {
-    let formErrors = {}
+    const formErrors = {}
     Object.keys(this.state.formErrors).forEach(k => {
       formErrors[k] = this.state.form[k] ? null : 'Field is required'
     });
@@ -54,8 +54,8 @@ class UserForm extends React.Component {
   }
 
   render() {
-    let user = this.props.data ? this.props.data : {}
-    let roles = this.props.roles ? this.cOptions() : []
+    const user = this.props.data ? this.props.data : {};
+    const roles = this.props.roles ? this.cOptions() : [];
 
     return(
       <form onSubmit={this.submit}>
@@ -67,7 +67,7 @@ class UserForm extends React.Component {
                    value={user.image ? user.image : null}
                    onChange={this.onChange} />
 
-        <FormGroup required={true}
+        <FormGroup required
                    name='name'
                    id='name'
                    type='text'
@@ -76,7 +76,7 @@ class UserForm extends React.Component {
                    onChange={this.onChange}
                    error={this.state.formErrors.name} />
 
-        <FormGroup required={true}
+        <FormGroup required
                    name='surname'
                    id='surname'
                    type='text'
@@ -86,7 +86,7 @@ class UserForm extends React.Component {
                    error={this.state.formErrors.surname}
         />
 
-        <FormSelect required={true}
+        <FormSelect required
                     name='role_id'
                     id='role_id'
                     label='Role'
@@ -95,7 +95,7 @@ class UserForm extends React.Component {
                     error={this.state.formErrors.role_id}
                     onChange={this.onChange} />
 
-        <FormGroup required={true}
+        <FormGroup required
                    name='email'
                    id='email'
                    type='text'
@@ -104,7 +104,7 @@ class UserForm extends React.Component {
                    error={this.state.formErrors.email}
                    onChange={this.onChange} />
 
-        <FormGroup required={true}
+        <FormGroup required
                    name='password'
                    id='password'
                    type='password'
@@ -114,8 +114,10 @@ class UserForm extends React.Component {
                    onChange={this.onChange} />
 
         <div className="d-flex justify-content-end">
-          <button type="submit" className="btn btn-outline-dark btn-lg d-flex justify-content-between align-items-center">
-            <span>{this.props.btnText}</span> {this.props.loading && <i className="material-icons pl-2 custom-spin">autorenew</i>}
+          <button type='submit'
+                  className="btn btn-outline-dark btn-lg d-flex justify-content-between align-items-center">
+            <span>{this.props.btnText}</span>
+	          {this.props.loading && <i className="material-icons pl-2 custom-spin">autorenew</i>}
           </button>
         </div>
       </form>
@@ -123,4 +125,4 @@ class UserForm extends React.Component {
   }
 }
 
-export {UserForm}
+export { UserForm };

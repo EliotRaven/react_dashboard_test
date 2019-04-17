@@ -1,15 +1,13 @@
 import React from 'react'
 import {Editor, EditorState, RichUtils, getDefaultKeyBinding, ContentState, convertFromHTML} from 'draft-js';
-import { InlineStyleControls } from "./inline-controls";
-import { BlockStyleControls } from "./block-controls";
-
 import {stateToHTML} from 'draft-js-export-html';
+import { InlineStyleControls } from './inline-controls';
+import { BlockStyleControls } from './block-controls';
 
-// Custom overrides for "code" style.
 const styleMap = {
   CODE: {
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontFamily: "'Inconsolata', 'Menlo', 'Consolas', monospace'",
     fontSize: 16,
     padding: 2,
   },
@@ -32,7 +30,7 @@ class BaseEditor extends React.Component {
   }
 
   getStateFromProps = (value) => {
-    let newContentState = convertFromHTML(value)
+    const newContentState = convertFromHTML(value)
     return ContentState.createFromBlockArray(
       newContentState.contentBlocks,
       newContentState.entityMap
@@ -87,8 +85,8 @@ class BaseEditor extends React.Component {
       editorContentHtml: stateToHTML(editorState.getCurrentContent())
     })
 
-    let anchorKey = editorState.getSelection().getAnchorKey();
-    let currentContent = editorState.getCurrentContent().getBlockForKey(anchorKey).getText();
+    const anchorKey = editorState.getSelection().getAnchorKey();
+    const currentContent = editorState.getCurrentContent().getBlockForKey(anchorKey).getText();
 
     this.props.validation(!!currentContent)
     this.props.onContentChange({target: {value: stateToHTML(editorState.getCurrentContent()), name: this.props.name}})
@@ -97,14 +95,14 @@ class BaseEditor extends React.Component {
   render() {
     const {editorState} = this.state;
     let className = 'RichEditor-editor';
-    let contentState = editorState.getCurrentContent();
+    const contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
       if (contentState.getBlockMap().first().getType() !== 'unstyled') {
         className += ' RichEditor-hidePlaceholder';
       }
     }
     return (
-      <div className="RichEditor-root">
+      <div className='RichEditor-root'>
         <BlockStyleControls
           editorState={editorState}
           onToggle={this.toggleBlockType}
@@ -121,9 +119,9 @@ class BaseEditor extends React.Component {
             handleKeyCommand={this.handleKeyCommand}
             keyBindingFn={this.mapKeyToEditorCommand}
             onChange={this.onChange}
-            placeholder="Write the text"
-            ref="editor"
-            spellCheck={true}
+            placeholder='Write the text'
+            ref='editor'
+            spellCheck
           />
         </div>
       </div>
@@ -131,4 +129,4 @@ class BaseEditor extends React.Component {
   }
 }
 
-export {BaseEditor}
+export { BaseEditor };

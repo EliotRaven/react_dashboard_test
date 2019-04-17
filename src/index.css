@@ -189,6 +189,16 @@ a.article:hover {
   background: #00AD27 !important;
   color: #fff !important;
 }
+/*
+
+home
+
+*/
+
+.home .card .card-body img {
+  width: 100%;
+  display: block;
+}
 
 /*------------------------------------
 articles list

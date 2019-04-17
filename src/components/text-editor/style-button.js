@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class StyleButton extends React.Component {
   constructor() {
@@ -8,6 +8,7 @@ class StyleButton extends React.Component {
       this.props.onToggle(this.props.style);
     };
   }
+
   render() {
     let className = 'RichEditor-styleButton';
     if (this.props.active) {
@@ -21,4 +22,4 @@ class StyleButton extends React.Component {
   }
 }
 
-export {StyleButton}
+export { StyleButton };

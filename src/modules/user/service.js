@@ -1,5 +1,5 @@
-import { BaseService } from '../../services/base.service';
-import api from "../../helpers/api";
+import BaseService from '../../services/base.service';
+import api from '../../helpers/api';
 
 class UserService extends BaseService {
   async index(query) {
@@ -12,4 +12,4 @@ class UserService extends BaseService {
   }
 }
 
-export default new UserService();
+export default new UserService('user');

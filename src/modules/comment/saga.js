@@ -1,13 +1,11 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import { commentActionTypes } from './types';
 import CommentService from './service';
-import {history} from '../../helpers/index';
-
-const entity = 'comment';
+import { history } from '../../helpers';
 
 function* index (action) {
   try {
-    const data = yield CommentService.index(entity, action.query);
+    const data = yield CommentService.index(action.query);
     yield put({
       type: commentActionTypes.GET_COMMENTS_SUCCESS,
       data,
@@ -25,7 +23,7 @@ function* index (action) {
 
 function* list (action) {
   try {
-    const data = yield CommentService.index(entity, action.query);
+    const data = yield CommentService.index(action.query);
     yield put({
       type: commentActionTypes.GET_COMMENT_LIST_SUCCESS,
       data,
@@ -43,7 +41,7 @@ function* list (action) {
 
 function* show (action) {
   try {
-    const data = yield CommentService.show(entity, action.id)
+    const data = yield CommentService.show(action.id)
     yield put({
       type: commentActionTypes.GET_COMMENT_SUCCESS,
       data,
@@ -61,7 +59,7 @@ function* show (action) {
 
 function* create (action) {
   try {
-    const data = yield CommentService.create(entity, action.data);
+    const data = yield CommentService.create(action.data);
     yield put({
       type: commentActionTypes.CREATE_COMMENT_SUCCESS,
       data,
@@ -80,7 +78,7 @@ function* create (action) {
 
 function* update (action) {
   try {
-    const data = yield CommentService.update(entity, action.id, action.data)
+    const data = yield CommentService.update(action.id, action.data)
     yield put({
       type: commentActionTypes.UPDATE_COMMENT_SUCCESS,
       data,
@@ -99,7 +97,7 @@ function* update (action) {
 
 function* remove (action) {
   try {
-    const data = yield CommentService.remove(entity, action.id);
+    const data = yield CommentService.remove(action.id);
     yield put({
       type: commentActionTypes.DELETE_COMMENT_SUCCESS,
       data,

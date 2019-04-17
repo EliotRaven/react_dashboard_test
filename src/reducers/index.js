@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   users,
   roles,
   comments,
-  statistic
+  statistic,
 });
 
 export default rootReducer;

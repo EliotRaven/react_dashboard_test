@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleButton } from "./style-button";
+import React from 'react';
+import { StyleButton } from './style-button';
 
-let INLINE_STYLES = [
+const INLINE_STYLES = [
   {label: 'Bold', style: 'BOLD'},
   {label: 'Italic', style: 'ITALIC'},
   {label: 'Underline', style: 'UNDERLINE'},
@@ -11,7 +11,7 @@ const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
 
   return (
-    <div className="RichEditor-controls">
+    <div className='RichEditor-controls'>
       {INLINE_STYLES.map((type) =>
         <StyleButton
           key={type.label}
@@ -25,4 +25,4 @@ const InlineStyleControls = (props) => {
   );
 };
 
-export {InlineStyleControls}
+export { InlineStyleControls };

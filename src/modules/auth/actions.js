@@ -20,5 +20,5 @@ const logout = () => ({
 export const authAction = {
   checkAuth,
   login,
-  logout
+  logout,
 };

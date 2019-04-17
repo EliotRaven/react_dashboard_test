@@ -1,45 +1,54 @@
-import api from '../helpers/api'
+import api from '../helpers/api';
 
 class BaseService {
-  index(entity, query) {
-    return new Promise((resolve, reject)=>{
-      return api.call('get', `/${entity}`, query)
-        .then(res => resolve(res.data))
-        .catch(error => reject(error.response))
-    })
+  constructor(entity) {
+    this.entity = entity;
   }
 
-  show(entity, id) {
-    return new Promise((resolve, reject)=>{
-      return api.call('get', `/${entity}/${id}`)
-        .then(res => resolve(res.data))
-        .catch(error => reject(error.response))
-    })
+  async index(query) {
+    try {
+      const res = await api.call('get', `/${this.entity}`, query);
+      return res.data;
+    } catch(error) {
+      return error.response;
+    }
   }
 
-  create(entity, data) {
-    return new Promise((resolve, reject)=>{
-      return api.call('post', `/${entity}`, null, data)
-        .then(res => resolve(res.data))
-        .catch(error => reject(error.response))
-    })
+  async show(id) {
+	  try {
+		  const res = await api.call('get', `/${this.entity}/${id}`);
+		  return res.data;
+	  } catch(error) {
+		  return error.response;
+	  }
   }
 
-  update(entity, id, data) {
-    return new Promise((resolve, reject)=>{
-      return api.call('put', `/${entity}/${id}`, null, data)
-        .then(res => resolve(res.data))
-        .catch(error => reject(error.response))
-    })
+  async create(data) {
+	  try {
+		  const res = await api.call('post', `/${this.entity}`, null, data);
+		  return res.data;
+	  } catch(error) {
+		  return error.response;
+	  }
   }
 
-  remove(entity, id) {
-    return new Promise((resolve, reject)=>{
-      return api.call('delete', `/${entity}/${id}`)
-        .then(res => resolve(res.data))
-        .catch(error => reject(error.response))
-    })
+	async update(id, data) {
+		try {
+			const res = await api.call('put', `/${this.entity}/${id}`, null, data);
+			return res.data;
+		} catch(error) {
+			return error.response;
+		}
+  }
+
+	async remove(id) {
+		try {
+			const res = await api.call('delete', `/${this.entity}/${id}`);
+			return res.data;
+		} catch(error) {
+			return error.response;
+		}
   }
 }
 
-export {BaseService}
+export default BaseService;

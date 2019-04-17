@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { authAction } from "../../modules/auth";
+import { authAction } from '../../modules/auth';
 
 class Login extends React.Component {
   login = (e) => {
@@ -14,35 +14,35 @@ class Login extends React.Component {
   }
 
   render () {
-    let {error, loading} = this.props.state.auth
+    const {error, loading} = this.props.state.auth;
     return (
-      <div className="login mt-5">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-8">
+      <div className='login mt-5'>
+        <div className='container'>
+          <div className='row justify-content-center'>
+            <div className='col-8'>
               <form onSubmit={this.login}>
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input type="text"
+                <div className='form-group'>
+                  <label htmlFor='email'>Email</label>
+                  <input type='text'
                          name='email'
-                         className="form-control"
-                         id="email"
+                         className='form-control'
+                         id='email'
                          ref={(input)=>this.email = input}
-                         placeholder="Enter email" />
+                         placeholder='Enter email' />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="name">Password</label>
-                  <input type="password"
+                <div className='form-group'>
+                  <label htmlFor='name'>Password</label>
+                  <input type='password'
                          name='password'
-                         className="form-control"
+                         className='form-control'
                          ref={(input)=>this.password = input}
-                         id="password"
-                         placeholder="Enter password" />
+                         id='password'
+                         placeholder='Enter password' />
                 </div>
-                <button type="submit" disabled={loading} className="btn btn-success">
+                <button type='submit' disabled={loading} className='btn btn-success'>
                   Submit
                 </button>
-                {error && error.data && <div className="alert alert-danger mt-2">{error.data.message}</div>}
+                {error.data && error.data.message && <div className='alert alert-danger mt-2'>{error.data.message}</div>}
               </form>
             </div>
           </div>

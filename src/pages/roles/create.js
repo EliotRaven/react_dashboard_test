@@ -1,6 +1,6 @@
 import React from 'react';
-import { RoleForm } from '../../components/forms';
 import { connect } from 'react-redux';
+import { RoleForm } from '../../components/forms';
 import { roleAction } from '../../modules/role';
 
 class CreateRole extends React.Component {
@@ -11,7 +11,7 @@ class CreateRole extends React.Component {
   render() {
     return (
       <div className='create-user'>
-        <RoleForm onSubmit={this.onSubmit} btnText="Create" />
+        <RoleForm onSubmit={this.onSubmit} btnText='Create' />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { CommentForm } from '../../components/forms';
 import { connect } from 'react-redux';
+import { CommentForm } from '../../components/forms';
 import { commentAction } from '../../modules/comment';
 import { userAction } from '../../modules/user';
 import { articlesAction } from '../../modules/article';
@@ -17,9 +17,9 @@ class UpdateComment extends React.Component {
   }
 
   render() {
-    let {loading, item} = this.props.state.comments;
-    let articles = this.props.state.articles.data;
-    let users = this.props.state.users.data;
+    const {loading, item} = this.props.state.comments;
+    const articles = this.props.state.articles.data;
+    const users = this.props.state.users.data;
 
     return (
       <div className='update-user'>
@@ -29,7 +29,7 @@ class UpdateComment extends React.Component {
                      data={item}
                      articles={articles}
                      users={users}
-                     btnText="Update" />}
+                     btnText='Update' />}
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import api from '../../helpers/api';
-import { BaseService } from '../../services/base.service';
+import BaseService from '../../services/base.service';
 
 class ArticleService extends BaseService {
   async index(query) {
@@ -7,7 +7,7 @@ class ArticleService extends BaseService {
       const articles = await api.call('get', '/article/user/authors', query);
       return articles.data;
     } catch (e) {
-      return e.response;
+      throw e.response;
     }
   }
 
@@ -16,9 +16,9 @@ class ArticleService extends BaseService {
       const articles = await api.call('get', '/article', query);
       return articles.data;
     } catch (e) {
-      return e.response;
+      throw e.response;
     }
   }
 }
 
-export default new ArticleService();
+export default new ArticleService('article');

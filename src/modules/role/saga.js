@@ -1,13 +1,11 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import { roleActionTypes } from './types';
-import { history } from '../../helpers/index';
+import { history } from '../../helpers';
 import RoleService from './service';
-
-const entity = 'role';
 
 function* index (action) {
   try {
-    const data = yield RoleService.index(entity, action.query);
+    const data = yield RoleService.index(action.query);
     yield put({
       type: roleActionTypes.GET_ROLES_SUCCESS,
       data,
@@ -25,7 +23,7 @@ function* index (action) {
 
 function* list (action) {
   try {
-    const data = yield RoleService.index(entity, action.query);
+    const data = yield RoleService.index(action.query);
     yield put({
       type: roleActionTypes.GET_ROLE_LIST_SUCCESS,
       data,
@@ -43,7 +41,7 @@ function* list (action) {
 
 function* show (action) {
   try {
-    const data = yield RoleService.show(entity, action.id);
+    const data = yield RoleService.show(action.id);
     yield put({
       type: roleActionTypes.GET_ROLE_SUCCESS,
       data,
@@ -61,7 +59,7 @@ function* show (action) {
 
 function* create (action) {
   try {
-    const data = yield RoleService.create(entity, action.data);
+    const data = yield RoleService.create(action.data);
     yield put({
       type: roleActionTypes.CREATE_ROLE_SUCCESS,
       data,
@@ -80,7 +78,7 @@ function* create (action) {
 
 function* update (action) {
   try {
-    const data = yield RoleService.update(entity, action.id, action.data);
+    const data = yield RoleService.update(action.id, action.data);
     yield put({
       type: roleActionTypes.UPDATE_ROLE_SUCCESS,
       data,
@@ -99,7 +97,7 @@ function* update (action) {
 
 function* remove (action) {
   try {
-    const data = yield RoleService.remove(entity, action.id);
+    const data = yield RoleService.remove(action.id);
     yield put({
       type: roleActionTypes.DELETE_ROLE_SUCCESS,
       data,

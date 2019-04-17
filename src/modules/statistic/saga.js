@@ -2,11 +2,9 @@ import { put, takeEvery } from 'redux-saga/effects'
 import { statisticActionTypes } from './types'
 import StatisticService from './service';
 
-const entity = 'statistic';
-
 function* index () {
   try {
-    const data = yield StatisticService.index(entity);
+    const data = yield StatisticService.index();
     yield put({
       type: statisticActionTypes.GET_STATISTIC_SUCCESS,
       data,

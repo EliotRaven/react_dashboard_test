@@ -1,13 +1,13 @@
-import api from "../../helpers/api";
+import api from '../../helpers/api';
 
 const signin = async credentials => {
   try {
     const res = await api.call('post', `/login`, null, credentials, true);
-    setAuthUserToStorage(res.data.user);
-    setSessionToStorage(res.data.session);
-    return res.data;
-  } catch (e) {
-    return e.response;
+	  setAuthUserToStorage(res.data.user);
+	  setSessionToStorage(res.data.session);
+	  return res.data;
+  } catch (error) {
+    throw error.response;
   }
 };
 
@@ -46,5 +46,5 @@ export const authService = {
   checkAuth,
   getAuthUser,
   getAuthHeaders,
-  logout
+  logout,
 };
