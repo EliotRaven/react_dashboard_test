@@ -5,7 +5,7 @@ import { userAction } from '../../modules/user';
 import { roleAction } from '../../modules/role';
 
 class CreateUser extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch(roleAction.list());
   }
 

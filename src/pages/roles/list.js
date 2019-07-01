@@ -7,7 +7,7 @@ import { history } from '../../helpers';
 import { roleAction } from '../../modules/role';
 
 class Roles extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.getRoles(queryString.parse(this.props.location.search).page);
   }
 

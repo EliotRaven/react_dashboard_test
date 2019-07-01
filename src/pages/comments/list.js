@@ -7,7 +7,7 @@ import { history } from '../../helpers';
 import { commentAction } from '../../modules/comment';
 
 class Comments extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.getComments(queryString.parse(this.props.location.search).page);
   }
 

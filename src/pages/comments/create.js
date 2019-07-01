@@ -6,7 +6,7 @@ import { commentAction } from '../../modules/comment';
 import { userAction } from '../../modules/user';
 
 class CreateComment extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch(userAction.list());
     this.props.dispatch(articlesAction.list());
   }

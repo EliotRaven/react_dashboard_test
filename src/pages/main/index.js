@@ -6,7 +6,7 @@ import { Card } from '../../components/card';
 import { statisticAction } from '../../modules/statistic';
 
 class Main extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.getData();
   }
 

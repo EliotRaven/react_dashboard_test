@@ -7,7 +7,7 @@ import { history } from '../../helpers';
 import { userAction } from '../../modules/user';
 
 class Users extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.getUsers(queryString.parse(this.props.location.search).page);
   }
 

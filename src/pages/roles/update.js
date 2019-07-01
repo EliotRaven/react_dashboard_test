@@ -4,7 +4,7 @@ import { RoleForm } from '../../components/forms';
 import { roleAction } from '../../modules/role';
 
 class UpdateRole extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch(roleAction.show(this.props.match.params.id));
   }
 

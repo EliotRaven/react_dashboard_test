@@ -6,7 +6,7 @@ import { userAction } from '../../modules/user';
 import { articlesAction } from '../../modules/article';
 
 class UpdateComment extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch(commentAction.show(this.props.match.params.id));
     this.props.dispatch(userAction.list());
     this.props.dispatch(articlesAction.list());

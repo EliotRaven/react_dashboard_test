@@ -4,9 +4,9 @@ import env from '../env'
 
 class API {
     call(method, uri, params=null, data=null, auth=false){
-        const apiUrl = env.api
-        const authUrl = env.auth
-        const url = auth ? authUrl : apiUrl
+        const apiUrl = env.api;
+        const authUrl = env.auth;
+        const url = auth ? authUrl : apiUrl;
         const headers = {
             ...authService.getAuthHeaders() || '',
             'Content-Type': 'application/json',

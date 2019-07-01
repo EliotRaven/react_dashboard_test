@@ -4,7 +4,7 @@ import { ArticleForm } from '../../components/forms';
 import { articlesAction } from '../../modules/article';
 
 class UpdateArticle extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch(articlesAction.show(this.props.match.params.id));
   }
 

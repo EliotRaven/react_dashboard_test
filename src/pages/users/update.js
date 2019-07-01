@@ -5,7 +5,7 @@ import { userAction } from '../../modules/user';
 import { roleAction } from '../../modules/role';
 
 class UpdateUser extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch(userAction.show(this.props.match.params.id));
     this.props.dispatch(roleAction.list());
   };

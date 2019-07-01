@@ -10,7 +10,7 @@ import { Pagination } from '../../components/pagination';
 import { ArticleItem } from '../../components/list-items';
 
 class Articles extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.getArticles(queryString.parse(this.props.location.search).page);
   }
 
